@@ -1,0 +1,26 @@
+GET http://localhost:3000/get
+###
+
+POST http://localhost:3000/post
+###
+
+DELETE http://localhost:3000/delete
+###
+
+PUT http://localhost:3000/put
+###
+
+
+
+
+
+
+
+
+
+
+###
+GET http://localhost:5000/items
+
+###
+GET http://localhost:5000/items/1    HTTP/1.1
