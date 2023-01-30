@@ -1,6 +1,8 @@
-import {fastify} from "fastify";
+const app = require('fastify')({logger: true})
 
-const app = fastify({logger: true})
+const dbConnection = require('./plugins/db-Connetion')
+app.register(dbConnection)
+
 
 app.get('/get', async (require, reply) => {
 	console.log('URL = ', require.url)
@@ -25,7 +27,7 @@ const opts = {
 }
 app.post('/post', opts, async (req, reply) => {
 	console.log(typeof req.body)
-	console.log( req.body)
+	console.log(req.body)
 
 	return {hello: 'hello world'}
 })
