@@ -3,11 +3,34 @@ import {fastify} from "fastify";
 const app = fastify({logger: true})
 
 app.get('/get', async (require, reply) => {
-	return 'hello world'
+	console.log('URL = ', require.url)
+	return reply.code(201).send('Object Return')
+			.then((reply) => {
+				console.log('Response = ', reply)
+			})
+	// return 'hello world'
 })
-app.post('/post', async (require, reply) => {
-	return 'hello world'
+
+
+const opts = {
+	schema: {
+		body: {
+			type: 'object',
+			properties: {
+				someKey: {type: 'boolean'},
+				someOtherKey: {type: 'number'}
+			}
+		}
+	}
+}
+app.post('/post', opts, async (req, reply) => {
+	console.log(typeof req.body)
+	console.log( req.body)
+
+	return {hello: 'hello world'}
 })
+
+
 app.delete('/delete', async (require, reply) => {
 	return 'hello world'
 })

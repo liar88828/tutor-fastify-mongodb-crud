@@ -2,6 +2,13 @@ GET http://localhost:3000/get
 ###
 
 POST http://localhost:3000/post
+Content-Type: application/json
+
+{
+      "person": "aza miranda"
+}
+
+
 ###
 
 DELETE http://localhost:3000/delete
