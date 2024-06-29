@@ -1,15 +1,33 @@
-const app = require('fastify')({logger: true})
+const app = require('fastify')(
+		{
+			logger: {
+				level: "info",
+			}
+		})
+
 
 const dbConnection = require('./plugins/db-Connetion')
 app.register(dbConnection)
 
 
+app.decorate('conf', {
+	db: 'my Costume data base',
+	port: 3000
+})
+
+
 app.get('/get', async (require, reply) => {
-	console.log('URL = ', require.url)
-	return reply.code(201).send('Object Return')
-			.then((reply) => {
-				console.log('Response = ', reply)
-			})
+
+	console.log(app.conf.db)
+
+	// require.log.error('test')
+	// console.log('URL = ', require.url)
+	// return reply
+	// 		.code(201)
+	// 		.send('Object Return')
+	// 		.then((reply) => {
+	// 			console.log('Response = ', reply)
+	// 		})
 	// return 'hello world'
 })
 
